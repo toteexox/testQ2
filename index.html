@@ -88,7 +88,7 @@
         .ipa-text { color: #777; font-size: 14px; margin-bottom: 2px; order: 2; }
         .trans-text { color: #888; font-size: 13px; order: 3; }
 
-        .chunk { cursor: pointer; border-radius: 4px; padding: 2px 4px; }
+        .chunk { pointer-events: auto; cursor: pointer; border-radius: 4px; padding: 2px 4px; display: inline-block; }
         .chunk:hover { background: #d2e3fc; }
         .chunk.active { background: #d2e3fc !important; color: #174ea6 !important; font-weight: bold; }
 
@@ -150,7 +150,6 @@
             <button class="tab-btn" style="margin-top: 10px; width: 38px; height: 28px;" onclick="toggleMiniMode(false)"><<</button>
         </div>
 
-        <audio id="player"></audio> 
         <main class="scroll-area" id="scroll-area">
             <div class="content-wrap" id="display-area"></div>
         </main>
@@ -326,7 +325,6 @@
             document.querySelectorAll('.ipa-text').forEach(el => el.style.fontSize = Math.max(12, baseSize * 0.8) + 'px');
         }
 
-        // [중요 수정] 자막 카드를 먼저 생성한 후 상태 메서드를 실행하도록 순서 정렬
         function loadDefaultContent() {
             let html = `<h2 class="section-title" onclick="toggleAutoPlayAll(this)">Michael Jackson | ${studyData.title}</h2>`;
             studyData.sentences.forEach(item => {
@@ -337,7 +335,6 @@
             displayArea.innerHTML = html; 
             applyFontSize();
             
-            // 데이터 로드가 끝난 후 음원과 버튼 상태를 동기화하여 에러 차단
             player.src = studyData.audio; 
             player.load();
             applyButtonState('.ipa-text', 'btn-ipa'); 
@@ -382,8 +379,8 @@
             clearTimeout(window.shadowTimer); 
             const rate = player.playbackRate;
             
-            // 보정치 피드백 반영: 시작 0.18초 싱크 교정
-            stopTime = e + (0.15 * rate); 
+            // [종료 버그 수정 완료] 시작 지점을 0.18초 앞당긴 만큼, 종료 시점도 0.02초 살짝 미리 끊어 브라우저 딜레이 타임을 상쇄합니다.
+            stopTime = e - (0.02 * rate); 
             player.currentTime = Math.max(0, s - (0.18 * rate)); 
             player.play(); 
         }
