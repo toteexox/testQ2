@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Content</title>
     <style>
@@ -150,6 +150,7 @@
             <button class="tab-btn" style="margin-top: 10px; width: 38px; height: 28px;" onclick="toggleMiniMode(false)"><<</button>
         </div>
 
+        <audio id="player"></audio> 
         <main class="scroll-area" id="scroll-area">
             <div class="content-wrap" id="display-area"></div>
         </main>
@@ -163,7 +164,7 @@
             sentences: [
                 {
                     start: 0.000, end: 6.620,
-                    ipa: `/aɪ doʊnt riːd ɔːl ðə θɪŋz ˈrɪtn əˈbaʊt miː. aɪ ˈwʌznt əˈwɛr ðæt ðə wɜːrld θɔːt aɪ wʌz soʊ wɪrd ænd bɪˈzɑːr./`,
+                    ipa: "/aɪ doʊnt riːd ɔːl ðə θɪŋz ˈrɪtn əˈbaʊt miː. aɪ ˈwʌznt əˈwɛr ðæt ðə wɜːrld θɔːt aɪ wʌz soʊ wɪrd ænd bɪˈzɑːr./",
                     trans: "저는 저에 대한 글을 모두 읽지는 않습니다. 세상이 저를 그렇게 이상하고 기괴한 사람으로 생각하고 있다는 것도 몰랐어요.",
                     chunks: [
                         { text: "I don't", s: 0.000, e: 0.530 },
@@ -178,7 +179,7 @@
                 },
                 {
                     start: 6.620, end: 14.000,
-                    ipa: `/bʌt wɛn ju ɡroʊ ʌp, æz aɪ dɪd, ɪn frʌnt əv wʌn ˈhʌndrəd ˈmɪljən ˈpiːpl sɪns ði eɪdʒ əv faɪv, jʊr ˌɔːtəˈmætɪkli ˈdɪfrənt./`,
+                    ipa: "/bʌt wɛn ju ɡroʊ ʌp, æz aɪ dɪd, ɪn frʌnt əv wʌn ˈhʌndrəd ˈmɪljən ˈpiːpl sɪns ði eɪdʒ əv faɪv, jʊr ˌɔːtəˈmætɪkli ˈdɪfrənt./",
                     trans: "하지만 저처럼 5살 때부터 1억 명이 넘는 사람들 앞에서 자라게 되면, 자연스럽게 남들과 달라질 수밖에 없죠.",
                     chunks: [
                         { text: "But when you grow up", s: 6.620, e: 7.430 },
@@ -195,7 +196,7 @@
                 },
                 {
                     start: 14.000, end: 23.330,
-                    ipa: `/maɪ ˈtʃaɪldhʊd wʌz kəmˈpliːtli ˈteɪkən əˈweɪ frʌm miː. ðɛr wʌz noʊ ˈkrɪsməs, ðɛr wʌz noʊ ˈbɜːrθdeɪz. ɪt wʌz nɑːt ə ˈnɔːrml ˈtʃaɪldhʊd. noʊ ˈnɔːrml ˈplɛʒərz əv ˈtʃaɪldhʊd./`,
+                    ipa: "/maɪ ˈtʃaɪldhʊd wʌz kəmˈpliːtli ˈteɪkən əˈweɪ frʌm miː. ðɛr wʌz noʊ ˈkrɪsməs, ðɛr wʌz noʊ ˈbɜːrθdeɪz. ɪt wʌz nɑːt ə ˈnɔːrml ˈtʃaɪldhʊd. noʊ ˈnɔːrml ˈplɛʒərz əv ˈtʃaɪldhʊd./",
                     trans: "제 어린 시절은 완전히 빼앗겨 버렸습니다. 크리스마스도 없었고 생일도 없었습니다. 평범한 어린 시절이 아니었어요. 아이가 누릴 수 있는 평범한 즐거움도 없었습니다.",
                     chunks: [
                         { text: "My childhood", s: 14.000, e: 14.860 },
@@ -211,7 +212,7 @@
                 },
                 {
                     start: 23.330, end: 30.240,
-                    ipa: `/ðoʊz wɜːr ɪksˈtʃeɪndʒd fɔːr hɑːrd wɜːrk, ˈstrʌɡl, ænd peɪn, ænd ɪˈvɛntʃuəl məˈtɪriəl ænd prəˈfɛʃənl səkˈsɛs./`,
+                    ipa: "/ðoʊz wɜːr ɪksˈtʃeɪndʒd fɔːr hɑːrd wɜːrk, ˈstrʌɡl, ænd peɪn, ænd ɪˈvɛntʃuəl məˈtɪriəl ænd prəˈfɛʃənl səkˈsɛs./",
                     trans: "그 모든 것은 힘든 노동과 고난, 고통으로 바뀌었습니다. 그리고 결국 물질적 성공과 커리어적인 성공을 얻었죠.",
                     chunks: [
                         { text: "Those were", s: 23.330, e: 24.100 },
@@ -225,7 +226,7 @@
                 },
                 {
                     start: 30.240, end: 37.740,
-                    ipa: `/bʌt æz æn ˈɔːfl praɪs, aɪ ˈkænɑːt ˌriːkriˈeɪt ðæt pɑːrt əv maɪ laɪf, ænd ðæts waɪ aɪ lʌv ˈtʃɪldrən ænd lɜːrn soʊ mʌtʃ frʌm ˈbiːɪŋ əˈraʊnd ðɛm./`,
+                    ipa: "/bʌt æz æn ˈɔːfl praɪs, aɪ ˈkænɑːt ˌriːkriˈeɪt ðæt pɑːrt əv maɪ laɪf, ænd ðæts waɪ aɪ lʌv ˈtʃɪldrən ænd lɜːrn soʊ mʌtʃ frʌm ˈbiːɪŋ əˈraʊnd ðɛm./",
                     trans: "하지만 끔찍한 대가를 치러야 했죠. 저는 제 인생의 그 부분을 다시 만들 수 없습니다. 그래서 저는 아이들을 사랑하고, 그들과 함께 지내며 많은 것을 배웁니다.",
                     chunks: [
                         { text: "but as", s: 30.240, e: 30.470 },
@@ -241,7 +242,7 @@
                 },
                 {
                     start: 37.740, end: 50.860,
-                    ipa: `/aɪ ˈriːəlaɪz ðæt ˈmɛni əv ˈaʊər wɜːrldz ˈprɑːbləmz təˈdeɪ, frʌm ði ˈɪnər ˈsɪti kraɪm tuː lɑːrdʒ-skeɪl wɔːrz ænd ˈtɛrərɪzəm ænd ˈaʊər ˌoʊvərˈkraʊdɪd ˈprɪzənz, ɑːr ə rɪˈzʌlt əv ðə fækt ðæt ˈtʃɪldrən hæv hæd ðɛr ˈtʃaɪldhʊd ˈstoʊlən frʌm ðɛm./`,
+                    ipa: "/aɪ ˈriːəlaɪz ðæt ˈmɛni əv ˈaʊər wɜːrldz ˈprɑːbləmz təˈdeɪ, frʌm ði ˈɪnər ˈsɪti kraɪm tuː lɑːrdʒ-skeɪl wɔːrz ænd ˈtɛrərɪzəm ænd ˈaʊər ˌoʊvərˈkraʊdɪd ˈprɪzənz, ɑːr ə rɪˈzʌlt əv ðə fækt ðæt ˈtʃɪldrən hæv hæd ðɛr ˈtʃaɪldhʊd ˈstoʊlən frʌm ðɛm./",
                     trans: "오늘날 세상의 수많은 문제들, 도심 범죄부터 대규모 전쟁과 테러, 그리고 교도소 과밀화 문제까지도 결국은 아이들이 어린 시절을 빼앗긴 결과라고 생각합니다.",
                     chunks: [
                         { text: "I realize that", s: 37.740, e: 38.450 },
@@ -262,7 +263,7 @@
                 },
                 {
                     start: 50.860, end: 59.920,
-                    ipa: `/ðə ˈmædʒɪk, ðə ˈwʌndər, ðə ˈmɪstəri, ænd ði ˈɪnəsəns əv ə ˈtʃaɪldz hɑːrt ɑːr ðə siːdz əv ˌkriːeɪˈtɪvəti ðæt wɪl hiːl ðə wɜːrld. aɪ ˈriːəli bɪˈliːv ðæt./`,
+                    ipa: "/ðə ˈmædʒɪk, ðə ˈwʌndər, ðə ˈmɪstəri, ænd ði ˈɪnəsəns əv ə ˈtʃaɪldz hɑːrt ɑːr ðə siːdz əv ˌkriːeɪˈtɪvəti ðæt wɪl hiːl ðə wɜːrld. aɪ ˈriːəli bɪˈliːv ðæt./",
                     trans: "아이의 마음속에 있는 마법과 경이로움, 신비함과 순수함은 세상을 치유할 창조성의 씨앗입니다. 저는 그것을 진심으로 믿습니다.",
                     chunks: [
                         { text: "The magic,", s: 50.860, e: 51.850 },
@@ -379,6 +380,7 @@
             clearTimeout(window.shadowTimer); 
             const rate = player.playbackRate;
             
+            // 싱크 보정 세팅유지 (0.18초 당기기)
             stopTime = e - (0.02 * rate); 
             player.currentTime = Math.max(0, s - (0.18 * rate)); 
             player.play(); 
