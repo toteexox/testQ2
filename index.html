@@ -133,13 +133,20 @@ const studyData = {
             audio: "audio.wav",
             sentences: [
                 {
-                    start: 0.000, end: 6.620,
-                    ipa: `/aɪ doʊnt riːd ɔːl ðə θɪŋz ˈrɪtn əˈbaʊt miː. aɪ ˈwʌznt əˈwɛr ðæt ðə wɜːrld θɔːt aɪ wʌz soʊ wɪrd ænd bɪˈzɑːr./`,
-                    trans: "저는 저에 대한 글을 모두 읽지는 않습니다. 세상이 저를 그렇게 이상하고 기괴한 사람으로 생각하고 있다는 것도 몰랐어요.",
+                    start: 0.000, end: 2.460,
+                    ipa: `/aɪ doʊnt riːd ɔːl ðə θɪŋz ˈrɪtn əˈbaʊt miː./`,
+                    trans: "저는 저에 대한 글을 모두 읽지는 않습니다.",
                     chunks: [
                         { text: "I don't", s: 0.000, e: 0.530 },
                         { text: "read all the things", s: 0.530, e: 1.590 },
-                        { text: "written about me.", s: 1.590, e: 2.460 },
+                        { text: "written about me.", s: 1.590, e: 2.460 }
+                    ]
+                },
+                {
+                    start: 2.460, end: 6.620,
+                    ipa: `/aɪ wʌznt əˈwɛr ðæt ðə wɜːrld θɔːt aɪ wʌz soʊ wɪrd ænd bɪˈzɑːr./`,
+                    trans: "세상이 저를 그렇게 이상하고 기괴한 사람으로 생각하고 있다는 것도 몰랐어요.",
+                    chunks: [
                         { text: "I wasn't aware", s: 2.460, e: 3.210 },
                         { text: "that the world", s: 3.210, e: 3.820 },
                         { text: "thought I was", s: 3.820, e: 4.500 },
@@ -165,26 +172,46 @@ const studyData = {
                     ]
                 },
                 {
-                    start: 14.000, end: 23.330,
-                    ipa: `/maɪ ˈtʃaɪldhʊd wʌz kəmˈpliːtli ˈteɪkən əˈweɪ frʌm miː. ðɛr wʌz noʊ ˈkrɪsməs, ðɛr wʌz noʊ ˈbɜːrθdeɪz. ɪt wʌz nɑːt ə ˈnɔːrml ˈtʃaɪldhʊd. noʊ ˈnɔːrml ˈplɛʒərz əv ˈtʃaɪldhʊd./`,
-                    trans: "제 어린 시절은 완전히 빼앗겨 버렸습니다. 크리스마스도 없었고 생일도 없었습니다. 평범한 어린 시절이 아니었어요. 아이가 누릴 수 있는 평범한 즐거움도 없었습니다.",
+                    start: 14.000, end: 17.040,
+                    ipa: `/maɪ ˈtʃaɪldhʊd wʌz kəmˈpliːtli ˈteɪkən əˈweɪ frʌm miː./`,
+                    trans: "제 어린 시절은 완전히 빼앗겨 버렸습니다.",
                     chunks: [
                         { text: "My childhood", s: 14.000, e: 14.860 },
                         { text: "was completely", s: 14.860, e: 15.730 },
-                        { text: "taken away from me.", s: 15.730, e: 17.040 },
+                        { text: "taken away from me.", s: 15.730, e: 17.040 }
+                    ]
+                },
+                {
+                    start: 17.040, end: 19.880,
+                    ipa: `/ðɛr wʌz noʊ ˈkrɪsməs, ðɛr wʌz noʊ ˈbɜːrθdeɪz./`,
+                    trans: "크리스마스도 없었고 생일도 없었습니다.",
+                    chunks: [
                         { text: "There was no Christmas,", s: 17.040, e: 18.410 },
-                        { text: "there was no birthdays.", s: 18.410, e: 19.880 },
+                        { text: "there was no birthdays.", s: 18.410, e: 19.880 }
+                    ]
+                },
+                {
+                    start: 19.880, end: 21.570,
+                    ipa: `/ɪt wʌz nɑːt ə ˈnɔːrml ˈtʃaɪldhʊd./`,
+                    trans: "평범한 어린 시절이 아니었어요.",
+                    chunks: [
                         { text: "It was not a", s: 19.880, e: 20.350 },
-                        { text: "normal childhood.", s: 20.350, e: 21.570 },
+                        { text: "normal childhood.", s: 20.350, e: 21.570 }
+                    ]
+                },
+                {
+                    start: 21.570, end: 23.330,
+                    ipa: `/noʊ ˈnɔːrml ˈplɛʒərz əv ˈtʃaɪldhʊd./`,
+                    trans: "아이가 누릴 수 있는 평범한 즐거움도 없었습니다.",
+                    chunks: [
                         { text: "No normal", s: 21.570, e: 22.020 },
                         { text: "pleasures of childhood.", s: 22.020, e: 23.330 }
                     ]
                 },
                 {
-                    /* [수정] 4번째와 5번째 문단을 하나로 통합 */
-                    start: 23.330, end: 37.740,
-                    ipa: `/ðoʊz wɜːr ɪksˈtʃeɪndʒd fɔːr hɑːrd wɜːrk, ˈstrʌɡl, ænd peɪn, ænd ɪˈvɛntʃuəl məˈtɪriəl ænd prəˈfɛʃənl səkˈsɛs. bʌt æz æn ˈɔːfl praɪs, aɪ ˈkænɑːt ˌriːkriˈeɪt ðæt pɑːrt əv maɪ laɪf, ænd ðæts waɪ aɪ lʌv ˈtʃɪldrən ænd lɜːrn soʊ mʌtʃ frʌm ˈbiːɪŋ əˈraʊnd ðɛm./`,
-                    trans: "그 모든 것은 힘든 노동과 고난, 고통으로 바뀌었습니다. 그리고 결국 물질적 성공과 커리어적인 성공을 얻었죠. 하지만 끔찍한 대가를 치러야 했죠. 저는 제 인생의 그 부분을 다시 만들 수 없습니다. 그래서 저는 아이들을 사랑하고, 그들과 함께 지내며 많은 것을 배웁니다.",
+                    start: 23.330, end: 30.240,
+                    ipa: `/ðoʊz wɜːr ɪksˈtʃeɪndʒd fɔːr hɑːrd wɜːrk, ˈstrʌɡl, ænd peɪn, ænd ɪˈvɛntʃuəl məˈtɪriəl ænd prəˈfɛʃənl səkˈsɛs./`,
+                    trans: "그 모든 것은 힘든 노동과 고난, 고통으로 바뀌었습니다. 그리고 결국 물질적 성공과 커리어적인 성공을 얻었죠.",
                     chunks: [
                         { text: "Those were", s: 23.330, e: 24.100 },
                         { text: "exchanged for", s: 24.100, e: 25.160 },
@@ -192,11 +219,25 @@ const studyData = {
                         { text: "struggle, and pain,", s: 26.100, e: 27.390 },
                         { text: "and eventual", s: 27.390, e: 28.060 },
                         { text: "material", s: 28.060, e: 28.690 },
-                        { text: "professional success,", s: 28.690, e: 30.240 },
+                        { text: "professional success,", s: 28.690, e: 30.240 }
+                    ]
+                },
+                {
+                    start: 30.240, end: 34.070,
+                    ipa: `/bʌt æz æn ˈɔːfl praɪs, aɪ ˈkænɑːt ˌriːkriˈeɪt ðæt pɑːrt əv maɪ laɪf,/`,
+                    trans: "하지만 끔찍한 대가를 치러야 했죠. 저는 제 인생의 그 부분을 다시 만들 수 없습니다.",
+                    chunks: [
                         { text: "but as", s: 30.240, e: 30.470 },
                         { text: "an awful price,", s: 30.470, e: 31.900 },
                         { text: "I cannot recreate that", s: 31.900, e: 33.060 },
-                        { text: "part of my life,", s: 33.060, e: 34.070 },
+                        { text: "part of my life,", s: 33.060, e: 34.070 }
+                    ]
+                },
+                {
+                    start: 34.070, end: 37.740,
+                    ipa: `/ænd ðæts waɪ aɪ lʌv ˈtʃɪldrən ænd lɜːrn soʊ mʌtʃ frʌm ˈbiːɪŋ əˈraʊnd ðɛm./`,
+                    trans: "그래서 저는 아이들을 사랑하고, 그들과 함께 지내며 많은 것을 배웁니다.",
+                    chunks: [
                         { text: "and that's why", s: 34.070, e: 34.630 },
                         { text: "I love children", s: 34.630, e: 35.780 },
                         { text: "and learn", s: 35.780, e: 36.200 },
@@ -226,9 +267,9 @@ const studyData = {
                     ]
                 },
                 {
-                    start: 50.860, end: 59.920,
-                    ipa: `/ðə ˈmædʒɪk, ðə ˈwʌndər, ðə ˈmɪstəri, ænd ði ˈɪnəsəns əv ə ˈtʃaɪldz hɑːrt ɑːr ðə siːdz əv ˌkriːeɪˈtɪvəti ðæt wɪl hiːl ðə wɜːrld. aɪ ˈriːəli bɪˈliːv ðæt./`,
-                    trans: "아이의 마음속에 있는 마법과 경이로움, 신비함과 순수함은 세상을 치유할 창조성의 씨앗입니다. 저는 그것을 진심으로 믿습니다.",
+                    start: 50.860, end: 58.640,
+                    ipa: `/ðə ˈmædʒɪk, ðə ˈwʌndər, ðə ˈmɪstəri, ænd ði ˈɪnəsəns əv ə ˈtʃaɪldz hɑːrt ɑːr ðə siːdz əv ˌkriːeɪˈtɪvəti ðæt wɪl hiːl ðə wɜːrld./`,
+                    trans: "아이의 마음속에 있는 마법과 경이로움, 신비함과 순수함은 세상을 치유할 창조성의 씨앗입니다.",
                     chunks: [
                         { text: "The magic,", s: 50.860, e: 51.850 },
                         { text: "the wonder,", s: 51.850, e: 52.370 },
@@ -238,7 +279,14 @@ const studyData = {
                         { text: "are the seeds of", s: 54.920, e: 55.610 },
                         { text: "creativity", s: 55.610, e: 56.370 },
                         { text: "that will", s: 56.370, e: 57.360 },
-                        { text: "heal the world.", s: 57.360, e: 58.640 },
+                        { text: "heal the world.", s: 57.360, e: 58.640 }
+                    ]
+                },
+                {
+                    start: 58.640, end: 59.920,
+                    ipa: `/aɪ ˈriːəli bɪˈliːv ðæt./`,
+                    trans: "저는 그것을 진심으로 믿습니다.",
+                    chunks: [
                         { text: "I really", s: 58.640, e: 59.040 },
                         { text: "believe that.", s: 59.040, e: 59.920 }
                     ]
