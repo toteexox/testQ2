@@ -423,11 +423,25 @@
             }        
         }
 
-        function playPart(s, e) {             
+function playPart(s, e) {             
             clearTimeout(window.shadowTimer);             
             const rate = player.playbackRate;                        
-            stopTime = e - (0.02 * rate);             
-            player.currentTime = Math.max(0, s - (0.18 * rate));             
+            
+            let offset = 0.02; // 기본 값 (0.5배속 이하 슬로우)
+            
+            // 배속별 멈춤 타이밍 미세 조정
+            if (rate === 1.0) {
+                offset = 0.13; // [추천] 1배속일 때 끝부분이 밀리지 않도록 0.13초 미리 끊음
+            } else if (rate > 1.0) {
+                offset = 0.15 * rate; // 1배속보다 더 빠를 때 오차 보정
+            } else if (rate >= 0.7) {
+                offset = 0.06; // 0.7배속일 때의 보정값
+            }
+            
+            stopTime = e - offset; 
+            
+            // 시작 지점도 배속에 따라 자연스럽게 여유를 둡니다 (음절 첫 소리 잘림 방지)
+            player.currentTime = Math.max(0, s - (0.15 * rate)); 
             player.play();         
         }
 
