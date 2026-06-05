@@ -150,7 +150,6 @@
             <button class="tab-btn" style="margin-top: 10px; width: 38px; height: 28px;" onclick="toggleMiniMode(false)"><<</button>
         </div>
 
-        <audio id="player"></audio> 
         <main class="scroll-area" id="scroll-area">
             <div class="content-wrap" id="display-area"></div>
         </main>
@@ -380,7 +379,6 @@
             clearTimeout(window.shadowTimer); 
             const rate = player.playbackRate;
             
-            // 싱크 보정 세팅유지 (0.18초 당기기)
             stopTime = e - (0.02 * rate); 
             player.currentTime = Math.max(0, s - (0.18 * rate)); 
             player.play(); 
