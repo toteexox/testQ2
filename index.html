@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Content</title>
     <style>
@@ -14,7 +14,7 @@
         }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Inter', 'Malgun Gothic', sans-serif; margin: 0; background: var(--bg); color: var(--text); min-height: 100vh; }
-        
+
         body.mini-mode .sticky-header { display: none; }
         body.mini-mode .floating-menu { display: flex; }
 
@@ -54,11 +54,7 @@
         #repeat-count { border: 1px solid #ddd; border-radius: 4px; padding: 0 4px; font-size: 13px; height: 28px; background: #fff; }
         #current-count { font-size: 14px; color: var(--primary); font-weight: 800; min-width: 45px; text-align: center; }
 
-        .tab-btn {
-            display: flex; align-items: center; justify-content: center;
-            background: #f1f3f4; border: none; border-radius: 12px;
-            width: 42px; height: 32px; cursor: pointer; transition: 0.2s;
-        }
+        .tab-btn { display: flex; align-items: center; justify-content: center; background: #f1f3f4; border: none; border-radius: 12px; width: 42px; height: 32px; cursor: pointer; transition: 0.2s; }
         .tab-btn:hover { background: #e8eaed; }
 
         .floating-menu {
@@ -69,49 +65,46 @@
         .float-label { font-size: 11px; font-weight: 700; color: #9aa0a6; }
         .float-select { width: 44px; border: 1px solid #eee; border-radius: 6px; font-size: 11px; outline: none; padding: 2px 0; text-align: center; }
 
-        .scroll-area { flex: 1; overflow-y: auto; padding: 30px 0; width: 100%; }
+        .scroll-area { flex: 1; padding: 30px 0; width: 100%; }
         .content-wrap { max-width: 80%; margin: 0 auto; width: 100%; padding-bottom: 100px; }
-        #scroll-top-btn { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--white); border: 1px solid var(--border); border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 24px; z-index: 1002; }
-        .section-title { font-size: 28px; color: var(--primary); margin-bottom: 25px; cursor: pointer; font-weight: bold; }
+        #scroll-top-btn {
+            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--white);
+            border: 1px solid var(--border); border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 24px; z-index: 1002;
+        }
 
-        /* ==========================================
-           [수정] Koboogy 본문 영역 전용 스타일 일치화
-           ========================================== */
-        .card { 
-            position: relative; background: var(--white); 
-            padding: 10px 15px; /* 패딩 값 변경 축소 */
-            border-radius: 12px; margin-bottom: 10px; display: flex; gap: 15px; 
-            border: 2px solid transparent; box-shadow: 0 1px 2px rgba(0,0,0,0.05); 
-            transition: 0.2s; cursor: pointer; overflow: hidden; align-items: flex-start;
-        }
-        .card.active-play, .card.playing { 
-            border-left: 6px solid var(--primary) !important; 
-            background: #f0f7ff !important; 
-            border-color: #d2e3fc !important; 
-        }
+        .section-title { font-size: 28px; color: var(--primary); margin-bottom: 25px; cursor: pointer; font-weight: bold; }
+        .card { position: relative; background: var(--white); padding: 20px 25px; border-radius: 12px; margin-bottom: 10px; display: flex; gap: 15px; border: 2px solid transparent; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: 0.2s; cursor: pointer; overflow: hidden; align-items: flex-start; }
+        
+        .card:not(.playing):not(.active-play) { background-color: var(--pastel-blue); border: 2px solid var(--pastel-blue-border); }
+        .card.active-play, .card.playing { border-left: 6px solid var(--primary) !important; border-color: var(--primary) !important; background-color: #e8f0fe !important; }
+        
         .play-btn { width: 28px; height: 28px; cursor: pointer; flex-shrink: 0; background-size: contain; background-repeat: no-repeat; margin-top: 4px; }
         .playing .play-btn { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234285f4'%3E%3Cpath d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/%3E%3C/svg%3E"); }
         .card:not(.playing) .play-btn { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239aa0a6'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E"); }
 
         .text-content { flex: 1; display: flex; flex-direction: column; }
-        
-        /* 영어 문장 폰트 크기 및 두께 맞춤 */
         .sentence-eng { font-size: 18px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; order: 1; }
-        
-        /* 발음기호 스타일 수정: Noto Sans 베이스, 연회색(#777) 적용 */
-        .ipa-text { font-family: 'Noto Sans', sans-serif; color: #777; font-size: 14px; margin-bottom: 2px; order: 2; letter-spacing: 0px; }
-        
-        /* 해석 스타일 수정: 연한 회색(#888), 크기 13px 적용 */
+        .ipa-text { color: #777; font-size: 14px; margin-bottom: 2px; order: 2; }
         .trans-text { color: #888; font-size: 13px; order: 3; }
 
-        .chunk { cursor: pointer; border-radius: 4px; padding: 2px 4px; display: inline-block; }
+        .chunk { pointer-events: auto; cursor: pointer; border-radius: 4px; padding: 2px 4px; display: inline-block; }
+        .chunk:hover { background: #d2e3fc; }
         .chunk.active { background: #d2e3fc !important; color: #174ea6 !important; font-weight: bold; }
 
-        @media (max-width: 768px) { .container, .content-wrap { max-width: 95%; } .font-control-inline { display: none; } }
+        /* 영어단어 내 볼드 스타일 */
+        .sentence-eng b { color: #000; font-weight: 800; background-color: transparent; }
+        
+        /* 발음기호 내 볼드체 해제 및 색상 일반 텍스트(#777)와 통일 */
+        .ipa-text b { color: inherit; font-weight: normal; background-color: transparent; }
+
+        @media (max-width: 768px) { 
+            .container, .content-wrap { max-width: 95%; }
+            .font-control-inline { display: none; }
+        }
     </style>
 </head>
 <body>
-    <audio id="player"></audio>
     <div class="main-content">
         <header class="sticky-header">
             <div class="container">
@@ -121,17 +114,20 @@
                         <button class="btn" onclick="setSpeed(0.5, this)">x0.5</button>
                         <button class="btn" onclick="setSpeed(0.7, this)">x0.7</button>
                         <button class="btn active" onclick="setSpeed(1.0, this)">x1.0</button>
-                    </div>                                        
+                    </div>
+                    
                     <div class="font-control-inline">
                         <span class="font-icon">A</span>
                         <input type="range" id="font-slider" min="14" max="32" value="18" step="1">
                         <span class="font-icon large-A">A</span>
                     </div>
+
                     <div class="btn-grp" id="toggle-group">
                         <button class="btn toggle-btn active" id="btn-ipa" onclick="toggleDisplay('.ipa-text', this)">IPA</button>
                         <button class="btn toggle-btn active" id="btn-trans" onclick="toggleDisplay('.trans-text', this)">한</button>
                     </div>
                 </div>
+
                 <div class="practice-bar">
                     <div class="left-controls">
                         <span id="global-status-icon" onclick="toggleAutoPlayAll(document.querySelector('.section-title'))">▶️</span>
@@ -150,6 +146,7 @@
                 </div>
             </div>
         </header>
+
         <div class="floating-menu" id="floating-menu">
             <div class="float-item"><span id="float-play-icon" style="font-size: 20px; cursor:pointer;" onclick="toggleAutoPlayAll(document.querySelector('.section-title'))">▶️</span></div>
             <div class="float-item"><span id="float-count-label" style="font-size:11px; font-weight:800; color:var(--primary);"></span></div>
@@ -158,348 +155,312 @@
             <div class="float-item"><span class="float-label">연습</span><label class="switch"><input type="checkbox" id="float-shadow-mode" onchange="syncSettings('shadow', this.checked)"><span class="slider"></span></label></div>
             <button class="tab-btn" style="margin-top: 10px; width: 38px; height: 28px;" onclick="toggleMiniMode(false)"><<</button>
         </div>
+
+        <audio id="player"></audio> 
         <main class="scroll-area" id="scroll-area">
             <div class="content-wrap" id="display-area"></div>
-        </main>        
+        </main>
         <button id="scroll-top-btn" onclick="scrollToTop()">🔝</button>
     </div>
+
     <script>
         const studyData = {
             title: "Grammy Awards Speech",
             audio: "audio.wav",
             sentences: [
                 {
-                    start: 0.000, end: 2.460,
-                    ipa: `/aɪ doʊnt riːd ɔːl ðə θɪŋz ˈrɪtn əˈbaʊt miː./`,
-                    trans: "저는 저에 대한 글을 모두 읽지는 않습니다.",
+                    start: 0.000, end: 6.620,
+                    ipa: "/aɪ doʊnt <b>riːd</b> <b>ɔːl</b> ðə <b>θɪŋz</b> <b>ˈrɪtn</b> əˈbaʊt miː. aɪ ˈwʌznt <b>əˈwɛr</b> ðæt ðə <b>wɜːrld</b> <b>θɔːt</b> aɪ wʌz soʊ <b>wɪrd</b> ænd <b>bɪˈzɑːr</b>./",
+                    trans: "저는 저에 대한 글을 모두 읽지는 않습니다. 세상이 저를 그렇게 이상하고 기괴한 사람으로 생각하고 있다는 것도 몰랐어요.",
                     chunks: [
                         { text: "I don't", s: 0.000, e: 0.530 },
-                        { text: "read all the things", s: 0.530, e: 1.590 },
-                        { text: "written about me.", s: 1.590, e: 2.460 }
-                    ]
-                },
-                {
-                    start: 2.460, end: 6.620,
-                    ipa: `/aɪ wʌznt əˈwɛr ðæt ðə wɜːrld θɔːt aɪ wʌz soʊ wɪrd ænd bɪˈzɑːr./`,
-                    trans: "세상이 저를 그렇게 이상하고 기괴한 사람으로 생각하고 있다는 것도 몰랐어요.",
-                    chunks: [
-                        { text: "I wasn't aware", s: 2.460, e: 3.210 },
-                        { text: "that the world", s: 3.210, e: 3.820 },
-                        { text: "thought I was", s: 3.820, e: 4.500 },
-                        { text: "so weird", s: 4.500, e: 5.460 },
-                        { text: "and bizarre.", s: 5.460, e: 6.620 }
+                        { text: "<b>read</b> <b>all</b> the <b>things</b>", s: 0.530, e: 1.590 },
+                        { text: "<b>written</b> about me.", s: 1.590, e: 2.460 },
+                        { text: "I wasn't <b>aware</b>", s: 2.460, e: 3.210 },
+                        { text: "that the <b>world</b>", s: 3.210, e: 3.820 },
+                        { text: "<b>thought</b> I was", s: 3.820, e: 4.500 },
+                        { text: "so <b>weird</b>", s: 4.500, e: 5.460 },
+                        { text: "and <b>bizarre</b>.", s: 5.460, e: 6.620 }
                     ]
                 },
                 {
                     start: 6.620, end: 14.000,
-                    ipa: `/bʌt wɛn ju ɡroʊ ʌp, æz aɪ dɪd, ɪn frʌnt əv wʌn ˈhʌndrəd ˈmɪljən ˈpiːpl sɪns ði eɪdʒ əv faɪv, jʊr ˌɔːtəˈmætɪkli ˈdɪfrənt./`,
+                    ipa: "/bʌt wɛn ju <b>ɡroʊ</b> ʌp, æz aɪ <b>dɪd</b>, ɪn <b>frʌnt</b> əv wʌn <b>ˈhʌndrəd</b> <b>ˈmɪljən</b> <b>piːpl</b> <b>sɪns</b> ði <b>eɪdʒ</b> əv faɪv, jʊr <b>ˌɔːtəˈmætɪkali</b> <b>ˈdɪfrənt</b>./",
                     trans: "하지만 저처럼 5살 때부터 1억 명이 넘는 사람들 앞에서 자라게 되면, 자연스럽게 남들과 달라질 수밖에 없죠.",
                     chunks: [
-                        { text: "But when you grow up", s: 6.620, e: 7.430 },
-                        { text: "as I did in", s: 7.430, e: 8.270 },
-                        { text: "front of", s: 8.270, e: 8.740 },
+                        { text: "But when you <b>grow</b> up", s: 6.620, e: 7.430 },
+                        { text: "as I <b>did</b> in", s: 7.430, e: 8.270 },
+                        { text: "<b>front</b> of", s: 8.270, e: 8.740 },
                         { text: "100", s: 8.740, e: 9.480 },
-                        { text: "million people", s: 9.480, e: 10.620 },
-                        { text: "since the", s: 10.620, e: 11.000 },
-                        { text: "age of five,", s: 11.000, e: 12.320 },
+                        { text: "<b>million</b> <b>people</b>", s: 9.480, e: 10.620 },
+                        { text: "<b>since</b> the", s: 10.620, e: 11.000 },
+                        { text: "<b>age</b> of five,", s: 11.000, e: 12.320 },
                         { text: "you're", s: 12.320, e: 12.480 },
-                        { text: "automatically", s: 12.480, e: 13.290 },
-                        { text: "different.", s: 13.290, e: 14.000 }
+                        { text: "<b>automatically</b>", s: 12.480, e: 13.290 },
+                        { text: "<b>different</b>.", s: 13.290, e: 14.000 }
                     ]
                 },
                 {
-                    start: 14.000, end: 17.040,
-                    ipa: `/maɪ ˈtʃaɪldhʊd wʌz kəmˈpliːtli ˈteɪkən əˈweɪ frʌm miː./`,
-                    trans: "제 어린 시절은 완전히 빼앗겨 버렸습니다.",
+                    start: 14.000, end: 23.330,
+                    ipa: "/maɪ <b>ˈtʃaɪldhʊd</b> wʌz <b>kəmˈpliːtli</b> <b>ˈteɪkən</b> <b>əˈweɪ</b> frʌm miː. ðɛr wʌz noʊ <b>ˈkrɪsməs</b>, ðɛr wʌz noʊ <b>ˈbɜːrθdeɪz</b>. ɪt wʌz <b>nɑːt</b> ə <b>ˈnɔːrml</b> <b>ˈtʃaɪldhʊd</b>. noʊ <b>ˈnɔːrml</b> <b>ˈplɛʒərz</b> əv <b>ˈtʃaɪldhʊd</b>./",
+                    trans: "제 어린 시절은 완전히 빼앗겨 버렸습니다. 크리스마스도 없었고 생일도 없었습니다. 평범한 어린 시절이 아니었어요. 아이가 누릴 수 있는 평범한 즐거움도 없었습니다.",
                     chunks: [
-                        { text: "My childhood", s: 14.000, e: 14.860 },
-                        { text: "was completely", s: 14.860, e: 15.730 },
-                        { text: "taken away from me.", s: 15.730, e: 17.040 }
-                    ]
-                },
-                {
-                    start: 17.040, end: 19.880,
-                    ipa: `/ðɛr wʌz noʊ ˈkrɪsməs, ðɛr wʌz noʊ ˈbɜːrθdeɪz./`,
-                    trans: "크리스마스도 없었고 생일도 없었습니다.",
-                    chunks: [
-                        { text: "There was no Christmas,", s: 17.040, e: 18.410 },
-                        { text: "there was no birthdays.", s: 18.410, e: 19.880 }
-                    ]
-                },
-                {
-                    start: 19.880, end: 21.570,
-                    ipa: `/ɪt wʌz nɑːt ə ˈnɔːrml ˈtʃaɪldhʊd./`,
-                    trans: "평범한 어린 시절이 아니었어요.",
-                    chunks: [
-                        { text: "It was not a", s: 19.880, e: 20.350 },
-                        { text: "normal childhood.", s: 20.350, e: 21.570 }
-                    ]
-                },
-                {
-                    start: 21.570, end: 23.330,
-                    ipa: `/noʊ ˈnɔːrml ˈplɛʒərz əv ˈtʃaɪldhʊd./`,
-                    trans: "아이가 누릴 수 있는 평범한 즐거움도 없었습니다.",
-                    chunks: [
-                        { text: "No normal", s: 21.570, e: 22.020 },
-                        { text: "pleasures of childhood.", s: 22.020, e: 23.330 }
+                        { text: "My <b>childhood</b>", s: 14.000, e: 14.860 },
+                        { text: "was <b>completely</b>", s: 14.860, e: 15.730 },
+                        { text: "<b>taken</b> <b>away</b> from me.", s: 15.730, e: 17.040 },
+                        { text: "There was no <b>Christmas</b>,", s: 17.040, e: 18.410 },
+                        { text: "there was no <b>birthdays</b>.", s: 18.410, e: 19.880 },
+                        { text: "It was <b>not</b> a", s: 19.880, e: 20.350 },
+                        { text: "<b>normal</b> <b>childhood</b>.", s: 20.350, e: 21.570 },
+                        { text: "No <b>normal</b>", s: 21.570, e: 22.020 },
+                        { text: "<b>pleasures</b> of <b>childhood</b>.", s: 22.020, e: 23.330 }
                     ]
                 },
                 {
                     start: 23.330, end: 30.240,
-                    ipa: `/ðoʊz wɜːr ɪksˈtʃeɪndʒd fɔːr hɑːrd wɜːrk, ˈstrʌɡl, ænd peɪn, ænd ɪˈvɛntʃuəl məˈtɪriəl ænd prəˈfɛʃənl səkˈsɛs./`,
+                    ipa: "/ðoʊz wɜːr <b>ɪksˈtʃeɪndʒd</b> fɔːr <b>hɑːrd</b> <b>wɜːrk</b>, <b>ˈstrʌɡl</b>, ænd <b>peɪn</b>, ænd <b>ɪˈvɛntʃuəl</b> <b>məˈtɪriəl</b> ænd <b>prəˈfɛʃənl</b> <b>səkˈsɛs</b>./",
                     trans: "그 모든 것은 힘든 노동과 고난, 고통으로 바뀌었습니다. 그리고 결국 물질적 성공과 커리어적인 성공을 얻었죠.",
                     chunks: [
                         { text: "Those were", s: 23.330, e: 24.100 },
-                        { text: "exchanged for", s: 24.100, e: 25.160 },
-                        { text: "hard work,", s: 25.160, e: 26.100 },
-                        { text: "struggle, and pain,", s: 26.100, e: 27.390 },
-                        { text: "and eventual", s: 27.390, e: 28.060 },
-                        { text: "material", s: 28.060, e: 28.690 },
-                        { text: "professional success,", s: 28.690, e: 30.240 }
+                        { text: "<b>exchanged</b> for", s: 24.100, e: 25.160 },
+                        { text: "<b>hard</b> <b>work</b>,", s: 25.160, e: 26.100 },
+                        { text: "<b>struggle</b>, and <b>pain</b>,", s: 26.100, e: 27.390 },
+                        { text: "and <b>eventual</b>", s: 27.390, e: 28.060 },
+                        { text: "<b>material</b>", s: 28.060, e: 28.690 },
+                        { text: "<b>professional</b> <b>success</b>,", s: 28.690, e: 30.240 }
                     ]
                 },
                 {
-                    start: 30.240, end: 34.070,
-                    ipa: `/bʌt æz æn ˈɔːfl praɪs, aɪ ˈkænɑːt ˌriːkriˈeɪt ðæt pɑːrt əv maɪ laɪf,/`,
-                    trans: "하지만 끔찍한 대가를 치러야 했죠. 저는 제 인생의 그 부분을 다시 만들 수 없습니다.",
+                    start: 30.240, end: 37.740,
+                    ipa: "/bʌt æz æn <b>ˈɔːfl</b> <b>praɪs</b>, aɪ <b>ˈkænɑːt</b> <b>ˌriːkriˈeɪt</b> <b>ðæt</b> <b>pɑːrt</b> əv maɪ <b>laɪf</b>, ænd <b>ðæts</b> waɪ aɪ <b>lʌv</b> <b>ˈtʃɪldrən</b> ænd <b>lɜːrn</b> soʊ <b>mʌtʃ</b> frʌm <b>biːɪŋ</b> <b>əˈraʊnd</b> ðɛm./",
+                    trans: "하지만 끔찍한 대가를 치러야 했죠. 저는 제 인생의 그 부분을 다시 만들 수 없습니다. 그래서 저는 아이들을 사랑하고, 그들과 함께 지내며 많은 것을 배웁니다.",
                     chunks: [
                         { text: "but as", s: 30.240, e: 30.470 },
-                        { text: "an awful price,", s: 30.470, e: 31.900 },
-                        { text: "I cannot recreate that", s: 31.900, e: 33.060 },
-                        { text: "part of my life,", s: 33.060, e: 34.070 }
-                    ]
-                },
-                {
-                    start: 34.070, end: 37.740,
-                    ipa: `/ænd ðæts waɪ aɪ lʌv ˈtʃɪldrən ænd lɜːrn soʊ mʌtʃ frʌm ˈbiːɪŋ əˈraʊnd ðɛm./`,
-                    trans: "그래서 저는 아이들을 사랑하고, 그들과 함께 지내며 많은 것을 배웁니다.",
-                    chunks: [
-                        { text: "and that's why", s: 34.070, e: 34.630 },
-                        { text: "I love children", s: 34.630, e: 35.780 },
-                        { text: "and learn", s: 35.780, e: 36.200 },
-                        { text: "so much from", s: 36.200, e: 36.870 },
-                        { text: "being around them.", s: 36.870, e: 37.740 }
+                        { text: "an <b>awful</b> <b>price</b>,", s: 30.470, e: 31.900 },
+                        { text: "I <b>cannot</b> <b>recreate</b> <b>that</b>", s: 31.900, e: 33.060 },
+                        { text: "<b>part</b> of my <b>life</b>,", s: 33.060, e: 34.070 },
+                        { text: "and <b>that's</b> why", s: 34.070, e: 34.630 },
+                        { text: "I <b>love</b> <b>children</b>", s: 34.630, e: 35.780 },
+                        { text: "and <b>learn</b>", s: 35.780, e: 36.200 },
+                        { text: "so <b>much</b> from", s: 36.200, e: 36.870 },
+                        { text: "<b>being</b> <b>around</b> them.", s: 36.870, e: 37.740 }
                     ]
                 },
                 {
                     start: 37.740, end: 50.860,
-                    ipa: `/aɪ ˈriːəlaɪz ðæt ˈmɛni əv ˈaʊər wɜːrldz ˈprɑːbləmz təˈdeɪ, frʌm ði ˈɪnər ˈsɪti kraɪm tuː lɑːrdʒ-skeɪl wɔːrz ænd ˈtɛrərɪzəm ænd ˈaʊər ˌoʊvərˈkraʊdɪd ˈprɪzənz, ɑːr ə rɪˈzʌlt əv ðə fækt ðæt ˈtʃɪldrən hæv hæd ðɛr ˈtʃaɪldhʊd ˈstoʊlən frʌm ðɛm./`,
+                    ipa: "/aɪ <b>ˈriːəlaɪz</b> ðæt <b>ˈmɛni</b> əv ˈaʊər <b>wɜːrldz</b> <b>prɑːbləmz</b> <b>təˈdeɪ</b>, frʌm ði <b>ˈɪnər</b> <b>ˈsɪti</b> <b>kraɪm</b> tuː <b>lɑːrdʒ-skeɪl</b> <b>wɔːrz</b> ænd <b>ˈtɛrərɪzəm</b> ænd ˈaʊər <b>ˌoʊvərˈkraʊdɪd</b> <b>ˈprɪzənz</b>, ɑːr ə <b>rɪˈzʌlt</b> əv ðə <b>fækt</b> ðæt <b>ˈtʃɪldrən</b> hæv <b>hæd</b> ðɛr <b>ˈtʃaɪldhʊd</b> <b>ˈstoʊlən</b> frʌm ðɛm./",
                     trans: "오늘날 세상의 수많은 문제들, 도심 범죄부터 대규모 전쟁과 테러, 그리고 교도소 과밀화 문제까지도 결국은 아이들이 어린 시절을 빼앗긴 결과라고 생각합니다.",
                     chunks: [
-                        { text: "I realize that", s: 37.740, e: 38.450 },
-                        { text: "many of our", s: 38.450, e: 39.130 },
-                        { text: "world's problems today,", s: 39.130, e: 40.660 },
-                        { text: "from the inner city crime", s: 40.660, e: 42.160 },
-                        { text: "to large-scale wars and", s: 42.160, e: 43.680 },
-                        { text: "terrorism", s: 43.680, e: 44.480 },
+                        { text: "I <b>realize</b> that", s: 37.740, e: 38.450 },
+                        { text: "<b>many</b> of our", s: 38.450, e: 39.130 },
+                        { text: "<b>world's</b> <b>problems</b> <b>today</b>,", s: 39.130, e: 40.660 },
+                        { text: "from the <b>inner</b> <b>city</b> <b>crime</b>", s: 40.660, e: 42.160 },
+                        { text: "to <b>large-scale</b> <b>wars</b> and", s: 42.160, e: 43.680 },
+                        { text: "<b>terrorism</b>", s: 43.680, e: 44.480 },
                         { text: "and our", s: 44.480, e: 44.700 },
-                        { text: "overcrowded", s: 44.700, e: 45.430 },
-                        { text: "prisons,", s: 45.430, e: 46.240 },
-                        { text: "are a result", s: 46.240, e: 46.920 },
-                        { text: "of the fact", s: 46.920, e: 47.580 },
-                        { text: "that children have", s: 47.580, e: 48.680 },
-                        { text: "had their childhood", s: 48.680, e: 49.760 },
-                        { text: "stolen from them.", s: 49.760, e: 50.860 }
+                        { text: "<b>overcrowded</b>", s: 44.700, e: 45.430 },
+                        { text: "<b>prisons</b>,", s: 45.430, e: 46.240 },
+                        { text: "are a <b>result</b>", s: 46.240, e: 46.920 },
+                        { text: "of the <b>fact</b>", s: 46.920, e: 47.580 },
+                        { text: "that <b>children</b> have", s: 47.580, e: 48.680 },
+                        { text: "<b>had</b> their <b>childhood</b>", s: 48.680, e: 49.760 },
+                        { text: "<b>stolen</b> from them.", s: 49.760, e: 50.860 }
                     ]
                 },
                 {
-                    start: 50.860, end: 58.640,
-                    ipa: `/ðə ˈmædʒɪk, ðə ˈwʌndər, ðə ˈmɪstəri, ænd ði ˈɪnəsəns əv ə ˈtʃaɪldz hɑːrt ɑːr ðə siːdz əv ˌkriːeɪˈtɪvəti ðæt wɪl hiːl ðə wɜːrld./`,
-                    trans: "아이의 마음속에 있는 마법과 경이로움, 신비함과 순수함은 세상을 치유할 창조성의 씨앗입니다.",
+                    start: 50.860, end: 59.920,
+                    ipa: "/ðə <b>ˈmædʒɪk</b>, ðə <b>ˈwʌndər</b>, ðə <b>ˈmɪstəri</b>, ænd ði <b>ˈɪnəsəns</b> əv ə <b>ˈtʃaɪldz</b> <b>hɑːrt</b> ɑːr ðə <b>siːdz</b> əv <b>ˌkriːeɪˈtɪvəti</b> ðæt wɪl <b>hiːl</b> ðə <b>wɜːrld</b>. aɪ <b>ˈriːəli</b> <b>bɪˈliːv</b> <b>ðæt</b>./",
+                    trans: "아이의 마음속에 있는 마법과 경이로움, 신비함과 순수함은 세상을 치유할 창조성의 씨앗입니다. 저는 그것을 진심으로 믿습니다.",
                     chunks: [
-                        { text: "The magic,", s: 50.860, e: 51.850 },
-                        { text: "the wonder,", s: 51.850, e: 52.370 },
-                        { text: "the mystery,", s: 52.370, e: 53.080 },
-                        { text: "and the innocence of a", s: 53.080, e: 53.960 },
-                        { text: "child's heart", s: 53.960, e: 54.920 },
-                        { text: "are the seeds of", s: 54.920, e: 55.610 },
-                        { text: "creativity", s: 55.610, e: 56.370 },
+                        { text: "The <b>magic</b>,", s: 50.860, e: 51.850 },
+                        { text: "the <b>wonder</b>,", s: 51.850, e: 52.370 },
+                        { text: "the <b>mystery</b>,", s: 52.370, e: 53.080 },
+                        { text: "and the <b>innocence</b> of a", s: 53.080, e: 53.960 },
+                        { text: "<b>child's</b> <b>heart</b>", s: 53.960, e: 54.920 },
+                        { text: "are the <b>seeds</b> of", s: 54.920, e: 55.610 },
+                        { text: "<b>creativity</b>", s: 55.610, e: 56.370 },
                         { text: "that will", s: 56.370, e: 57.360 },
-                        { text: "heal the world.", s: 57.360, e: 58.640 }
-                    ]
-                },
-                {
-                    start: 58.640, end: 59.920,
-                    ipa: `/aɪ ˈriːəli bɪˈliːv ðæt./`,
-                    trans: "저는 그것을 진심으로 믿습니다.",
-                    chunks: [
-                        { text: "I really", s: 58.640, e: 59.040 },
-                        { text: "believe that.", s: 59.040, e: 59.920 }
+                        { text: "<b>heal</b> the <b>world</b>.", s: 57.360, e: 58.640 },
+                        { text: "I <b>really</b>", s: 58.640, e: 59.040 },
+                        { text: "<b>believe</b> <b>that</b>.", s: 59.040, e: 59.920 }
                     ]
                 }
             ]
         };
 
-        const player = document.getElementById('player'),               
-              displayArea = document.getElementById('display-area'),               
-              fontSlider = document.getElementById('font-slider'),              
-              statusIcon = document.getElementById('global-status-icon'),              
-              topBtn = document.getElementById('scroll-top-btn');                
-
+        const player = document.getElementById('player'), 
+              displayArea = document.getElementById('display-area'), 
+              fontSlider = document.getElementById('font-slider'),
+              statusIcon = document.getElementById('global-status-icon'),
+              topBtn = document.getElementById('scroll-top-btn');
+        
         let isShadowing = false, currentRepeat = 0, stopTime = 0, isAutoPlaying = false;
 
-        window.addEventListener('scroll', () => {            
-            if (window.scrollY > 150) topBtn.style.display = 'flex';            
-            else topBtn.style.display = 'none';        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 150) topBtn.style.display = 'flex';
+            else topBtn.style.display = 'none';
         });
 
-        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }        
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
         function toggleMiniMode(isMini) { document.body.classList.toggle('mini-mode', isMini); }
 
-        function syncSettings(type, value) {            
-            if (type === 'shadow') {                
-                isShadowing = value;                
-                document.getElementById('shadow-mode').checked = value;                
-                document.getElementById('float-shadow-mode').checked = value;                
-                stopAll();            
-            } else if (type === 'repeat') {                
-                document.getElementById('repeat-count').value = value;                
-                document.getElementById('float-repeat-count').value = value;            
-            }        
+        function syncSettings(type, value) {
+            if (type === 'shadow') {
+                isShadowing = value;
+                document.getElementById('shadow-mode').checked = value;
+                document.getElementById('float-shadow-mode').checked = value;
+                stopAll();
+            } else if (type === 'repeat') {
+                document.getElementById('repeat-count').value = value;
+                document.getElementById('float-repeat-count').value = value;
+            }
         }
 
-        function scrollToActive(el) {            
-            if (!el) return;            
-            const elRect = el.getBoundingClientRect();            
-            window.scrollTo({                 
-                top: elRect.top + window.scrollY - (window.innerHeight * 0.25),                 
-                behavior: 'smooth'             
-            });        
-        }                
-
-        function applyFontSize() {            
-            const baseSize = parseInt(fontSlider.value);            
-            document.querySelectorAll('.sentence-eng').forEach(el => el.style.fontSize = baseSize + 'px');            
-            document.querySelectorAll('.trans-text').forEach(el => el.style.fontSize = Math.max(11, baseSize * 0.75) + 'px');            
-            document.querySelectorAll('.ipa-text').forEach(el => el.style.fontSize = Math.max(12, baseSize * 0.8) + 'px');        
+        function scrollToActive(el) {
+            if (!el) return;
+            const elRect = el.getBoundingClientRect();
+            window.scrollTo({ 
+                top: elRect.top + window.scrollY - (window.innerHeight * 0.25), 
+                behavior: 'smooth' 
+            });
+        }
+        
+        function applyFontSize() {
+            const baseSize = parseInt(fontSlider.value);
+            document.querySelectorAll('.sentence-eng').forEach(el => el.style.fontSize = baseSize + 'px');
+            document.querySelectorAll('.trans-text').forEach(el => el.style.fontSize = Math.max(11, baseSize * 0.75) + 'px');
+            document.querySelectorAll('.ipa-text').forEach(el => el.style.fontSize = Math.max(12, baseSize * 0.8) + 'px');
         }
 
-        function loadDefaultContent() {            
-            let html = `<h2 class="section-title" onclick="toggleAutoPlayAll(this)">Michael Jackson | ${studyData.title}</h2>`;            
-            studyData.sentences.forEach(item => {                
-                const chunks = item.chunks.map(c => `<span class="chunk" data-s="${c.s}" data-e="${c.e}">${c.text}</span>`).join(' ');                
-                const content = `<div class="text-content"><div class="sentence-eng">${chunks}</div><div class="ipa-text">${item.ipa}</div><div class="trans-text">${item.trans}</div></div>`;                
-                html += `<div class="card" data-start="${item.start}" data-end="${item.end}"><div class="play-btn"></div>${content}</div>`;            
-            });            
-            displayArea.innerHTML = html;             
-            applyFontSize();                        
-            player.src = studyData.audio;             
-            player.load();            
-            applyButtonState('.ipa-text', 'btn-ipa');             
-            applyButtonState('.trans-text', 'btn-trans');        
+        function loadDefaultContent() {
+            let html = `<h2 class="section-title" onclick="toggleAutoPlayAll(this)">Michael Jackson | ${studyData.title}</h2>`;
+            studyData.sentences.forEach(item => {
+                const chunks = item.chunks.map(c => `<span class="chunk" data-s="${c.s}" data-e="${c.e}">${c.text}</span>`).join(' ');
+                const content = `<div class="text-content"><div class="sentence-eng">${chunks}</div><div class="ipa-text">${item.ipa}</div><div class="trans-text">${item.trans}</div></div>`;
+                html += `<div class="card" data-start="${item.start}" data-end="${item.end}"><div class="play-btn"></div>${content}</div>`;
+            });
+            displayArea.innerHTML = html; 
+            applyFontSize();
+            
+            player.src = studyData.audio; 
+            player.load();
+            applyButtonState('.ipa-text', 'btn-ipa'); 
+            applyButtonState('.trans-text', 'btn-trans');
         }
 
-        function applyButtonState(sel, id) {            
-            const targetBtn = document.getElementById(id);            
-            if (targetBtn) {                
-                const active = targetBtn.classList.contains('active');                
-                document.querySelectorAll(sel).forEach(el => el.style.display = active ? 'block' : 'none');            
-            }        
+        function applyButtonState(sel, id) {
+            const targetBtn = document.getElementById(id);
+            if (targetBtn) {
+                const active = targetBtn.classList.contains('active');
+                document.querySelectorAll(sel).forEach(el => el.style.display = active ? 'block' : 'none');
+            }
         }
 
         function toggleDisplay(sel, btn) { btn.classList.toggle('active'); applyButtonState(sel, btn.id); }
 
-        displayArea.addEventListener('click', (e) => {            
-            const card = e.target.closest('.card'), chunk = e.target.closest('.chunk'), playBtn = e.target.closest('.play-btn');            
-            if (chunk) { stopAll(); chunk.classList.add('active'); playPart(parseFloat(chunk.dataset.s), parseFloat(chunk.dataset.e)); return; }            
-            if (playBtn || card) {                
-                const targetCard = card;                
-                if (targetCard.classList.contains('playing')) { player.pause(); targetCard.classList.remove('playing'); }                 
-                else { stopAll(); targetCard.classList.add('playing', 'active-play'); scrollToActive(targetCard); playPart(parseFloat(targetCard.dataset.start), parseFloat(targetCard.dataset.end)); }            
-            }        
-        });
-
-        function toggleAutoPlayAll(titleEl) {            
-            if (isAutoPlaying) stopAll();            
-            else {                 
-                stopAll(); isAutoPlaying = true;                 
-                statusIcon.innerText = document.getElementById('float-play-icon').innerText = "⏸️";                
-                const first = displayArea.querySelector('.card');                 
-                if (first) {                     
-                    first.classList.add('active-play', 'playing');                    
-                    scrollToActive(first);                    
-                    playPart(parseFloat(first.dataset.start), parseFloat(first.dataset.end));                
-                }             
-            }        
-        }
-
-function playPart(s, e) {             
-            clearTimeout(window.shadowTimer);             
-            const rate = player.playbackRate;                        
+        displayArea.addEventListener('click', (e) => {
+            const card = e.target.closest('.card'), chunk = e.target.closest('.chunk'), playBtn = e.target.closest('.play-btn');
             
-            let offset = 0.02; // 기본 값 (0.5배속 이하 슬로우)
-            
-            // 배속별 멈춤 타이밍 미세 조정
-            if (rate === 1.0) {
-                offset = 0.21; // [추천] 1배속일 때 끝부분이 밀리지 않도록 0.13초 미리 끊음
-            } else if (rate > 1.0) {
-                offset = 0.21 * rate; // 1배속보다 더 빠를 때 오차 보정
-            } else if (rate >= 0.7) {
-                offset = 0.06; // 0.7배속일 때의 보정값
+            // 청크 클릭 시 동작 수정
+            if (chunk) { 
+                stopAll(); 
+                chunk.classList.add('active'); 
+                
+                // 해당 청크가 포함된 문장 카드 찾기
+                const targetCard = chunk.closest('.card');
+                if (targetCard) {
+                    targetCard.classList.add('playing', 'active-play');
+                    // 시작은 청크의 시간(data-s), 끝은 해당 문장 카드의 전체 종료 시간(dataset.end)
+                    playPart(parseFloat(chunk.dataset.s), parseFloat(targetCard.dataset.end));
+                }
+                return; 
             }
             
-            stopTime = e - offset; 
-            
-            // 시작 지점도 배속에 따라 자연스럽게 여유를 둡니다 (음절 첫 소리 잘림 방지)
-            player.currentTime = Math.max(0, s - (0.15 * rate)); 
-            player.play();         
-        }
-
-        function stopAll() {             
-            player.pause(); isAutoPlaying = false;             
-            statusIcon.innerText = document.getElementById('float-play-icon').innerText = "▶️";            
-            currentRepeat = 0; stopTime = 0; clearTimeout(window.shadowTimer);            
-            document.getElementById('current-count').innerText = document.getElementById('float-count-label').innerText = '';            
-            document.querySelectorAll('.playing, .active-play, .chunk.active').forEach(el => {                
-                el.classList.remove('playing', 'active-play', 'active');            
-            });        
-        }
-
-        player.addEventListener('timeupdate', () => {            
-            if (stopTime > 0 && player.currentTime >= stopTime) {                
-                player.pause(); stopTime = 0;                 
-                const active = document.querySelector('.card.playing');                
-                if (active) {                     
-                    if (isShadowing) handleShadowProcess(active);                     
-                    else if (isAutoPlaying) handleNext(active);                     
-                    else active.classList.remove('playing');                 
-                }            
-            }        
+            if (playBtn || card) {
+                const targetCard = card;
+                if (targetCard.classList.contains('playing')) { player.pause(); targetCard.classList.remove('playing'); } 
+                else { stopAll(); targetCard.classList.add('playing', 'active-play'); scrollToActive(targetCard); playPart(parseFloat(targetCard.dataset.start), parseFloat(targetCard.dataset.end)); }
+            }
         });
 
-        function handleShadowProcess(el) {            
-            currentRepeat++;             
-            const limit = parseInt(document.getElementById('repeat-count').value) || 1, rate = player.playbackRate;            
-            document.getElementById('current-count').innerText = document.getElementById('float-count-label').innerText = `${currentRepeat} / ${limit}`;            
-            const duration = (parseFloat(el.dataset.end) - parseFloat(el.dataset.start)) / rate;            
-            const waitTime = (duration + 1.5) * 1000;            
-            if (currentRepeat < limit) window.shadowTimer = setTimeout(() => playPart(parseFloat(el.dataset.start), parseFloat(el.dataset.end)), waitTime);            
-            else { currentRepeat = 0; if (isAutoPlaying) window.shadowTimer = setTimeout(() => handleNext(el), waitTime); else el.classList.remove('playing'); }        
+        function toggleAutoPlayAll(titleEl) {
+            if (isAutoPlaying) stopAll();
+            else { 
+                stopAll(); isAutoPlaying = true; 
+                statusIcon.innerText = document.getElementById('float-play-icon').innerText = "⏸️";
+                const first = displayArea.querySelector('.card'); 
+                if (first) { 
+                    first.classList.add('active-play', 'playing');
+                    scrollToActive(first);
+                    playPart(parseFloat(first.dataset.start), parseFloat(first.dataset.end));
+                } 
+            }
         }
 
-        function handleNext(el) {            
-            const all = Array.from(displayArea.querySelectorAll('.card'));            
-            const idx = all.indexOf(el); el.classList.remove('playing', 'active-play');            
-            if (idx < all.length - 1) {                 
-                const next = all[idx+1];                
-                next.classList.add('active-play', 'playing');                
-                scrollToActive(next);                
-                window.shadowTimer = setTimeout(() => {                     
-                    playPart(parseFloat(next.dataset.start), parseFloat(next.dataset.end));                
-                }, 400);             
-            } else stopAll();        
+        function playPart(s, e) { 
+            clearTimeout(window.shadowTimer); 
+            const rate = player.playbackRate;
+            
+            stopTime = e - (0.02 * rate); 
+            player.currentTime = Math.max(0, s - (0.18 * rate)); 
+            player.play(); 
         }
 
-        function setSpeed(s, btn) {             
-            player.playbackRate = s;             
-            document.querySelectorAll('.btn-grp .btn').forEach(b => { if(b.innerText.includes('x')) b.classList.remove('active'); });             
-            if(btn) btn.classList.add('active');            
-            document.getElementById('float-speed').value = s.toFixed(1);        
+        function stopAll() { 
+            player.pause(); isAutoPlaying = false; 
+            statusIcon.innerText = document.getElementById('float-play-icon').innerText = "▶️";
+            currentRepeat = 0; stopTime = 0; clearTimeout(window.shadowTimer);
+            document.getElementById('current-count').innerText = document.getElementById('float-count-label').innerText = '';
+            document.querySelectorAll('.playing, .active-play, .chunk.active').forEach(el => {
+                el.classList.remove('playing', 'active-play', 'active');
+            });
         }
 
-        window.onload = () => {            
-            loadDefaultContent();            
-            fontSlider.addEventListener('input', applyFontSize);        
+        player.addEventListener('timeupdate', () => {
+            if (stopTime > 0 && player.currentTime >= stopTime) {
+                player.pause(); stopTime = 0; 
+                const active = document.querySelector('.card.playing');
+                if (active) { 
+                    if (isShadowing) handleShadowProcess(active); 
+                    else if (isAutoPlaying) handleNext(active); 
+                    else active.classList.remove('playing'); 
+                }
+            }
+        });
+
+        function handleShadowProcess(el) {
+            currentRepeat++; 
+            const limit = parseInt(document.getElementById('repeat-count').value) || 1, rate = player.playbackRate;
+            document.getElementById('current-count').innerText = document.getElementById('float-count-label').innerText = `${currentRepeat} / ${limit}`;
+            const duration = (parseFloat(el.dataset.end) - parseFloat(el.dataset.start)) / rate;
+            const waitTime = (duration + 1.5) * 1000;
+            if (currentRepeat < limit) window.shadowTimer = setTimeout(() => playPart(parseFloat(el.dataset.start), parseFloat(el.dataset.end)), waitTime);
+            else { currentRepeat = 0; if (isAutoPlaying) window.shadowTimer = setTimeout(() => handleNext(el), waitTime); else el.classList.remove('playing'); }
+        }
+
+        function handleNext(el) {
+            const all = Array.from(displayArea.querySelectorAll('.card'));
+            const idx = all.indexOf(el); el.classList.remove('playing', 'active-play');
+            if (idx < all.length - 1) { 
+                const next = all[idx+1];
+                next.classList.add('active-play', 'playing');
+                scrollToActive(next);
+                window.shadowTimer = setTimeout(() => { 
+                    playPart(parseFloat(next.dataset.start), parseFloat(next.dataset.end));
+                }, 400); 
+            } else stopAll();
+        }
+
+        function setSpeed(s, btn) { 
+            player.playbackRate = s; 
+            document.querySelectorAll('.btn-grp .btn').forEach(b => { if(b.innerText.includes('x')) b.classList.remove('active'); }); 
+            if(btn) btn.classList.add('active');
+            document.getElementById('float-speed').value = s.toFixed(1);
+        }
+
+        window.onload = () => {
+            loadDefaultContent();
+            fontSlider.addEventListener('input', applyFontSize);
         };
     </script>
 </body>
